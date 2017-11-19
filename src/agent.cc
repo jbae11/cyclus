@@ -151,6 +151,7 @@ void Agent::Build(Agent* parent) {
 
 void Agent::EnterNotify() {
   ctx_->RegisterAgent(this);
+  std::cout << region(this)->spec_;
 }
 
 void Agent::Connect(Agent* parent) {
@@ -164,6 +165,20 @@ void Agent::Connect(Agent* parent) {
     parent->children_.insert(this);
   }
 }
+
+
+cyclus::Agent* Agent::region(Agent* a){
+  if (kind_ == "Facility"){
+    return parent_ -> parent();
+  }
+  if (kind_ == "Inst"){
+    return parent_;
+  }
+  if (kind_ == "Region"){
+    return NULL;
+  }
+}
+
 
 void Agent::Decommission() {
   CLOG(LEV_INFO3) << prototype() << "(" << this << ")"

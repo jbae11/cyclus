@@ -455,6 +455,8 @@ class Agent : public StateWrangler, virtual public Ider {
   /// adds an agent to the transaction table
   void AddToTable();
 
+  cyclus::Agent* region(Agent* a);
+
   /// connects an agent to its parent.
   void Connect(Agent* parent);
 
